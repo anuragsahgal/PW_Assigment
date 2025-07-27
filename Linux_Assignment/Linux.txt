@@ -134,4 +134,4 @@ A: 1. Identify the High CPU Usage Process:
       bash: kill -9 <PID>
       
       Sends SIGKILL (signal 9), forcefully ending the process if it does not respond to SIGTERM
-Thanks !
+Thanks!
