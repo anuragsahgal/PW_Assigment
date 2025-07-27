@@ -1,0 +1,282 @@
+Git Assignment Submission
+=========================
+
+Q1.a: Steps
+
+a. Create a new folder
+
+    bash: mkdir MyProject
+
+b. Put the following files in the folder
+
+    bash: cd MyProject
+          touch Code.txt Log.txt Output.txt
+
+c. Stage the Code.txt and Output.txt files
+
+    bash: git init
+          git add Code.txt Output.txt
+
+d. Commit them
+
+    bash: git commit -m "Added Code.txt and Output.txt files"
+
+e. Push them to GitHub
+
+    - First, create a new repository on GitHub named "MyProject"
+    - Copy the remote URL and run:
+
+    bash: git remote add origin https://github.com/AAKASHDEEP786/MyProject.git
+          git branch -M main
+          git push -u origin main
+
+--------------------------------------------------
+
+Q2: Tasks
+
+1. Create a Git working directory with feature1.txt and feature2.txt in the master branch
+
+    bash: mkdir Git-Project
+          cd Git-Project
+          git init
+          touch feature1.txt feature2.txt
+          echo "This is feature 1" > feature1.txt
+          echo "This is feature 2" > feature2.txt
+          git add feature1.txt feature2.txt
+          git commit -m "Add feature1.txt and feature2.txt to master"
+
+2. Create 3 branches: develop, feature1, and feature2
+
+    bash: git branch develop
+          git branch feature1
+          git branch feature2
+
+3. In develop branch, create develop.txt (do not stage or commit)
+
+    bash: git checkout develop
+          touch develop.txt
+          echo "Development in progress" > develop.txt
+
+4. Stash the file and checkout to feature1 branch
+
+    bash: git stash
+          git checkout feature1
+
+5. Create new.txt in feature1 branch, stage and commit
+
+    bash: touch new.txt
+          echo "This is new feature work" > new.txt
+          git add new.txt
+          git commit -m "Add new.txt to feature1 branch"
+
+6. Checkout to develop, unstash the file, and commit
+
+    bash: git checkout develop
+          git stash pop
+          git add develop.txt
+          git commit -m "Add develop.txt after unstashing"
+
+--------------------------------------------------
+
+Q3: Tasks
+
+1. Create a Git working directory with branches: develop, f1, f2
+
+    bash: mkdir Git-MultiBranch-Task
+          cd Git-MultiBranch-Task
+          git init
+
+2. In the master branch, commit main.txt
+
+    bash: touch main.txt
+          echo "This is the main file" > main.txt
+          git add main.txt
+          git commit -m "Add main.txt to master"
+
+3. Create branches and commit respective files
+
+    bash: git checkout -b develop
+          touch develop.txt
+          echo "This is the develop branch file" > develop.txt
+          git add develop.txt
+          git commit -m "Add develop.txt to develop branch"
+
+          git checkout -b f1
+          touch f1.txt
+          echo "This is F1 branch file" > f1.txt
+          git add f1.txt
+          git commit -m "Add f1.txt to f1 branch"
+
+          git checkout -b f2
+          touch f2.txt
+          echo "This is F2 branch file" > f2.txt
+          git add f2.txt
+          git commit -m "Add f2.txt to f2 branch"
+
+4. Push all branches to GitHub
+
+    bash: git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
+          git push -u origin master
+          git push -u origin develop
+          git push -u origin f1
+          git push -u origin f2
+
+5. Delete f2 branch locally and from GitHub
+
+    bash: git branch -d f2
+          git push origin --delete f2
+
+--------------------------------------------------
+
+### Q4: Tasks
+
+1. **Put `master.txt` on master branch, stage and commit**
+
+    ```bash
+    git checkout master
+    echo "This is master.txt" > master.txt
+    git add master.txt
+    git commit -m "Add master.txt to master"
+    ```
+
+2. **Create 3 branches: `public1`, `public2`, and `private`**
+
+    ```bash
+    git branch public1
+    git branch public2
+    git branch private
+    ```
+
+3. **Put `public1.txt` on `public1` branch, stage and commit**
+
+    ```bash
+    git checkout public1
+    echo "This is public1.txt" > public1.txt
+    git add public1.txt
+    git commit -m "Add public1.txt to public1"
+    ```
+
+4. **Merge `public1` into `master`**
+
+    ```bash
+    git checkout master
+    git merge public1 -m "Merge public1 into master"
+    ```
+
+5. **Merge `public2` into `master`**
+
+    ```bash
+    git merge public2 -m "Merge public2 into master"
+    ```
+
+6. **Edit `master.txt` on `private` branch, stage and commit**
+
+    ```bash
+    git checkout private
+    echo "Updated by private branch" >> master.txt
+    git add master.txt
+    git commit -m "Edit master.txt on private branch"
+    ```
+
+7. **Update `public1` and `public2` with new `master` code in `private`**
+
+    ```bash
+    git checkout public1
+    git merge private -m "Update public1 with private changes"
+
+    git checkout public2
+    git merge private -m "Update public2 with private changes"
+    ```
+
+8. **Update new master code on `master`**
+
+    ```bash
+    git checkout master
+    git merge private -m "Update master with private changes"
+    ```
+
+9. **Finally update all the code on the `private` branch**
+
+    ```bash
+    git checkout private
+    git merge master -m "Update private with latest master code"
+    ```
+
+---
+
+### 5: Tasks to Be Performed
+
+1. **Create a Git Flow workflow architecture on Git**
+
+   Git Flow is a branching model for Git that helps manage features, releases, and hotfixes systematically. It consists of the following main branches:
+
+   - **`master`** – production-ready code
+   - **`develop`** – integration branch for features
+   - **`feature/*`** – for new features
+   - **`release/*`** – for preparing new production releases
+   - **`hotfix/*`** – for urgent fixes
+
+2. **Step 2: Initialize a Git repository**
+
+    ```bash
+    git init git-flow-project
+    cd git-flow-project
+    ```
+
+    - **Create main branches:**
+
+    ```bash
+    git checkout -b master
+    git checkout -b develop
+    ```
+
+    - **Push the branches to the remote:**
+
+    ```bash
+    git remote add origin <your-repo-URL>
+    git push -u origin master
+    git push -u origin develop
+    ```
+
+3. **Step 3: Starting from a Feature Branch, Push to Master Following the Architecture**
+
+    - **Step 1: Create and work on a new feature**
+
+    ```bash
+    git checkout -b feature/login-page
+    ```
+
+    - **Step 2: Add a file for the feature**
+
+    ```bash
+    echo "Login Page Code" > login.html
+    git add login.html
+    git commit -m "Add login page feature"
+    ```
+
+    - **Step 3: Merge feature into develop (after work is done)**
+
+    ```bash
+    git checkout develop
+    git merge feature/login-page
+    git push origin develop
+    ```
+
+    - **Step 4: Create a release branch from develop**
+
+    ```bash
+    git checkout -b release/v1.0
+    git push origin release/v1.0
+    ```
+
+    - **Step 5: Merge release to master and develop**
+
+    ```bash
+    git checkout master
+    git merge release/v1.0
+    git push origin master
+
+    git checkout develop
+    git merge release/v1.0
+    git push origin develop
+    ``
