@@ -1,0 +1,136 @@
+1. What is Linux?
+
+A:  Linux is a free computer operating system that helps our computers hardware and software work together.
+    It is used in many devices like laptops, mobile phones, servers, and even smart TVs.
+    Anyone can use, share or change it because it is open-source.
+
+2.  What is difference between Hardlink and Softlink?
+
+    Hard Link:
+A:  A hard link is like creating another name for a file. It directly points to the files data on the disk.
+    If you delete the original file, the hard link still works because both the original file and the link
+    share the same data.
+
+     bash: ln file.txt file_h.txt
+
+    Soft Link:
+    A soft link is like a shortcut to a file or folder. It doesnt point to the data directly but points to 
+    the files name or location.
+    If you delete or move the original file, the soft link will stop working.
+
+     bash: ln -s file.txt file_s.txt
+
+3.  What is a Kernel in Linux?
+
+A:  The kernel is the core part of the Linux operating system. It is responsible for managing the 
+    computers hardware (like CPU, memory, and storage) and software (like programs running on our system).
+    It acts as a bridge between the user and the hardware.
+
+4.  How do you create a user account?
+
+A:  Command to Create a User
+   
+     bash: sudo useradd -m <username>
+
+    Set a Password for the User
+
+     bash: sudo passwd <username>
+
+5.  What is the "grep" command used for in Linux?
+
+A:  The grep command in Linux is used to search for specific patterns or text within files. It stands for
+    Global Regular Expression Print.
+    It helps you find lines in files that match a given pattern (string or regular expression).
+
+     bash: grep "word" filename.txt
+
+6.  Step1: Create user p1
+    Step2: He should be part of 3 groups g1,g2,g3
+    Step3: whenever he creates a file automatically in the group section of file grp g1 should come.
+
+A:  Step 1: Creating user p1:
+
+      bash: useradd -m p1
+
+    Step 2: Create the Groups
+
+      bash:sudo groupadd g1
+           sudo groupadd g2
+           sudo groupadd g3
+
+    Step 3: Add user p1 to groups g1, g2, and g3
+
+      bash: sudo usermod -aG g1,g2,g3 p1
+    
+    Step 4: Set g1 as the default group for files created by p1
+
+      bash: sudo usermod -g g1 p1
+  
+    Final Confirmation:
+      
+      bash: groups p1
+      bash: id p1
+
+7.  Step1: Create directory /tmp/bg as root user and create files inside it.
+
+    Step2: “abhi” should be the owner of the directory. He should be able to create files and delete files inside 
+
+    the directory and also he should be able to add content to all files inside the directory.
+
+A:  Step 1: Create Directory and Files as Root
+
+       bash: mkdir -p /tmp/bg
+             touch /tmp/bg/file1.txt /tmp/bg/file2.txt 
+
+    Step 2: Create the User abhi
+       
+       bash: sudo useradd -m abhi
+
+    Step 3: Give Ownership of Directory and Files to abhi
+       
+       bash: sudo chown -R abhi:abhi /tmp/bg
+
+    Step 4: Set Proper Permissions
+     
+       bash: sudo chmod 700 /tmp/bg
+
+    Step 5: Verify as abhi
+       
+       bash: sudo su abhi
+
+    Now try: 
+            cd /tmp/bg
+            touch newfile.txt               
+            echo "Test content" > file1.txt 
+            rm file1.txt                    
+
+8. You suspect that a particular process is consuming excessive CPU resources on your Linux server. How
+   would you identify and terminate this process?
+
+A: 1. Identify the High CPU Usage Process:
+
+      There are several commands available in Linux to monitor system performance and resource usage.
+      The most commonly used tools are:  
+
+   a) top: top provides a real-time view of system processes.
+      It shows CPU usage, memory usage, process IDs (PID), and other details.
+
+   b) htop(more user-friendly): htop is an enhanced version of top with a colorful and interactive interface.
+
+   c) ps: Use ps to list processes sorted by CPU usage.
+
+   2. Terminate the Problematic Process:
+
+      Once the high-CPU process is identified using its PID, terminate it using the kill command:
+
+   a) Graceful Termination:
+
+      bash: kill <PID>
+
+      Sends SIGTERM (signal 15), allowing the process to shut down gracefully.
+
+   b) Forceful Termination:
+
+      bash: kill -9 <PID>
+      
+      Sends SIGKILL (signal 9), forcefully ending the process if it does not respond to SIGTERM
